@@ -36,8 +36,8 @@ contract P2PHealthInsurance {
     // Define the functions for policy and claim creation and approval
     function createPolicy(uint256 coverageAmount, uint256 premiumAmount, uint256 coverageDuration) public payable {
         require(!policies[msg.sender].isActive, "Policy already exists.");
-        // coverageDuration = 86400 * 365 * coverageDuration;
-        coverageDuration = 600 * coverageDuration;
+        coverageDuration = 86400 * 365 * coverageDuration;
+        // coverageDuration = 600 * coverageDuration;
         policies[msg.sender] = Policy(msg.sender, coverageAmount, premiumAmount, coverageDuration, block.timestamp, true);
         require(msg.value == policies[msg.sender].premiumAmount, "Premium not paid or Incorrect premium amount.");
         policyHolderCount=policyHolderCount+1;
